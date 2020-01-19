@@ -1,0 +1,51 @@
+STRATEGY-2 
+1.	Iterate through last date index to start date index.
+2.	Keep track of the maximum stock price seen during iteration, say it is max_selling_price and max_profit1.
+3.	For any i-th day, there are only two possibilities –
+a.	Either price on the i-th day is greater than max_selling_price, in that case update the max_selling_price with that price.
+b.	Else (price on the i-th day is less than max_selling_price) so it means current day can be considered as buying date so calculate the difference and compare it with the max_profit1, if max_profit1 is less update it with the new value.
+4.	After the iteration, return max_profi1t.
+
+Time Complexity: O(n)
+
+CODE:-
+
+
+package Share_Price;
+
+public class Strategy2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] prices= {80,100,110,90,65,70,75,90,80,70,100,80,65,60,55,50};//creating an array of share prices
+	        int buy_date = 0;//declaring a variable which determines on which day we should buy the share
+	        int index = 0;
+	        int sell_date = 0;//declaring a variable which determines on which day we should sell the share
+	        int max_profit1 = 0;//calculating the maximum profit gained
+	        int max_selling_price = prices[prices.length - 1]; //assign the last element
+	        for (int i = (prices.length) - 2; i > 0; i--) {
+	            if (max_selling_price < prices[i]) {
+	                max_selling_price = prices[i];
+	                index = i;
+	            } else if (max_selling_price > prices[i]) {
+	                if (max_profit1 < max_selling_price - prices[i]) {
+	                    max_profit1 = max_selling_price - prices[i];
+	                    buy_date = i;
+	                    sell_date = index;
+	                }
+	            }
+	        }
+	        System.out.println("Maximum Profit:-"+max_profit1);
+	        System.out.println("Best Buying Day:-"+buy_date);
+	        System.out.println("Best Selling Day:-"+sell_date);
+	        
+	    }
+
+	}
+
+
+
+Output:-
+Max_Profit=35
+Best Buy_Day=4
+Best Sell_Day=10

@@ -1,0 +1,38 @@
+STRATEGY-1    BRUTE FORCE
+Use two nested loops. Taking one element at a time, consider outer loop value as buying  date index and compare it with the every element in the inner loop which will be considered as selling index date. Keep track of the maximum. This will be the maximum profit.
+Time Complexity: O(n^2)
+
+CODE:-
+package Share_Price;
+
+public class Strategy1_Brute_Force {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int prices[]= {80,100,110,90,65,70,75,90,80,70,100,80,65,60,55,50};// Declaring and Initializing Share Price Array
+		int max_profit=0;//Calculating Maximum Profit Gained
+		int buy_date=0;//declaring a variable which determines on which day we should buy the share
+		int sell_date=0;////declaring a variable which determines on which day we should sell the share
+		for(int i=0;i<prices.length;i++) {//
+			for(int j=0;j<prices.length;j++) {
+				if(i<j) {
+					if(max_profit<(prices[j]-prices[i])) {
+						max_profit=prices[j]-prices[i];
+						buy_date=i;
+						sell_date=j;
+					}
+				}
+			}
+		}
+		System.out.println("Maximum Profit is:-"+max_profit);
+		System.out.println("Best Buying Date is:-"+buy_date);
+		System.out.println("Best Selling Date is:-"+sell_date);
+
+	}
+
+}
+
+OUTPUT:-
+Max_Profit=35
+Best Buy_Day=4
+Best Sell_Day=10
